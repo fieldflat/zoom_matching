@@ -19,7 +19,7 @@ func (interactor *UserInteractor) Get(id int) (user domain.Users, err error) {
 		interactor.StatusCode = 404
 		return domain.Users{}, err
 	}
-	// user = foundUser.BuildForGet()
+
 	interactor.StatusCode = 200
 	return foundUser, nil
 }
@@ -28,12 +28,24 @@ func (interactor *UserInteractor) Get(id int) (user domain.Users, err error) {
 // 全てのユーザーを取得する．
 func (interactor *UserInteractor) GetAll() (user []domain.Users, err error) {
 	// Users の取得
-	foundUser, err := interactor.User.FindAll()
+	foundUsers, err := interactor.User.FindAll()
 	if err != nil {
 		interactor.StatusCode = 404
 		return []domain.Users{}, err
 	}
-	// user = foundUser.BuildForGet()
 	interactor.StatusCode = 200
-	return foundUser, nil
+	return foundUsers, nil
+}
+
+// CreateUser is a function
+// 全てのユーザーを取得する．
+func (interactor *UserInteractor) CreateUser(argUser domain.Users) (user domain.Users, err error) {
+
+	createdUser, err := interactor.User.Create(argUser)
+	if err != nil {
+		interactor.StatusCode = 404
+		return domain.Users{}, err
+	}
+	interactor.StatusCode = 200
+	return createdUser, nil
 }

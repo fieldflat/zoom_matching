@@ -20,10 +20,12 @@ func NewRouting(db *DB) *Routing {
 	return r
 }
 
+// [1]. Routingの設定
 func (r *Routing) setRouting() {
 	usersController := controllers.NewUsersController(r.DB)
 	r.Gin.GET("/users/:id", func(c *gin.Context) { usersController.Get(c) })
 	r.Gin.GET("/users", func(c *gin.Context) { usersController.GetAll(c) })
+	r.Gin.POST("/users", func(c *gin.Context) { usersController.Create(c) })
 }
 
 func (r *Routing) Run(port string) {

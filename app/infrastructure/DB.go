@@ -50,3 +50,7 @@ func (db *DB) First(out interface{}, where ...interface{}) *gorm.DB {
 func (db *DB) Find(out interface{}, where ...interface{}) *gorm.DB {
 	return db.Connect.Find(out, where...)
 }
+
+func (db *DB) Create(out interface{}, where ...interface{}) *gorm.DB {
+	return db.Connect.Create(out)
+}

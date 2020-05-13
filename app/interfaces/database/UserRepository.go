@@ -10,6 +10,8 @@ type UserRepository struct {
 	DB DB
 }
 
+// [5]. ここを編集
+
 func (repo *UserRepository) FindByID(id int) (user domain.Users, err error) {
 	user = domain.Users{}
 	repo.DB.First(&user, id)
@@ -23,4 +25,9 @@ func (repo *UserRepository) FindAll() (user []domain.Users, err error) {
 	users := []domain.Users{}
 	repo.DB.Find(&users)
 	return users, nil
+}
+
+func (repo *UserRepository) Create(user domain.Users) (event domain.Users, err error) {
+	repo.DB.Create(&user)
+	return user, nil
 }
