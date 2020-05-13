@@ -18,3 +18,9 @@ func (repo *UserRepository) FindByID(id int) (user domain.Users, err error) {
 	}
 	return user, nil
 }
+
+func (repo *UserRepository) FindAll() (user []domain.Users, err error) {
+	users := []domain.Users{}
+	repo.DB.Find(&users)
+	return users, nil
+}

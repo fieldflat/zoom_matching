@@ -1,29 +1,32 @@
 package domain
 
+// Users is a model
 type Users struct {
-	ID          int
-	ScreenName  string
-	DisplayName string
-	Password    string
-	Email       *string
-	CreatedAt   int64
-	UpdatedAt   int64
-}
-
-// この struct はビジネスロジックだと思うので、 usecase で書くべきなのかと思ったけど、
-// ここに定義した。
-type UsersForGet struct {
-	ID          int     `json:"id"`
-	ScreenName  string  `json:"screenName"`
-	DisplayName string  `json:"displayName"`
+	ID          int     `json:"ID"`
+	UserID      string  `json:"user_id`
+	FirstName   string  `json:"first_name"`
+	LastName    string  `json:"last_name"`
+	DisplayName string  `json:"display_name"`
 	Email       *string `json:"email"`
+	CreatedAt   int64   `json:"created_at"`
+	UpdatedAt   int64   `json:"updated_at"`
 }
 
+// UsersForGet is a model
+type UsersForGet struct {
+	ID        int     `json:"ID"`
+	UserID    string  `json:"user_id`
+	FirstName string  `json:"first_name"`
+	LastName  string  `json:"last_name"`
+	Email     *string `json:"email"`
+}
+
+// BuildForGet is a function
 func (u *Users) BuildForGet() UsersForGet {
 	user := UsersForGet{}
 	user.ID = u.ID
-	user.ScreenName = u.ScreenName
-	user.DisplayName = u.DisplayName
+	user.FirstName = u.FirstName
+	user.LastName = u.LastName
 	if u.Email != nil {
 		user.Email = u.Email
 	} else {

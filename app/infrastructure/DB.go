@@ -46,3 +46,7 @@ func newDB(d *DB) *DB {
 func (db *DB) First(out interface{}, where ...interface{}) *gorm.DB {
 	return db.Connect.First(out, where...)
 }
+
+func (db *DB) Find(out interface{}, where ...interface{}) *gorm.DB {
+	return db.Connect.Find(out, where...)
+}

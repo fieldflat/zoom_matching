@@ -23,6 +23,7 @@ func NewRouting(db *DB) *Routing {
 func (r *Routing) setRouting() {
 	usersController := controllers.NewUsersController(r.DB)
 	r.Gin.GET("/users/:id", func(c *gin.Context) { usersController.Get(c) })
+	r.Gin.GET("/users", func(c *gin.Context) { usersController.GetAll(c) })
 }
 
 func (r *Routing) Run(port string) {
