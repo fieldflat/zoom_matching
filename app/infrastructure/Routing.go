@@ -26,6 +26,7 @@ func (r *Routing) setRouting() {
 	r.Gin.GET("/users/:id", func(c *gin.Context) { usersController.Get(c) })
 	r.Gin.GET("/users", func(c *gin.Context) { usersController.GetAll(c) })
 	r.Gin.POST("/users", func(c *gin.Context) { usersController.Create(c) })
+	r.Gin.PUT("/users/:id", func(c *gin.Context) { usersController.Update(c) })
 	r.Gin.DELETE("/users/:id", func(c *gin.Context) { usersController.Delete(c) })
 }
 

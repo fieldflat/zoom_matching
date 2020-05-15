@@ -32,6 +32,14 @@ func (repo *UserRepository) Create(user domain.Users) (event domain.Users, err e
 	return user, nil
 }
 
+func (repo *UserRepository) Update(user domain.Users) (event domain.Users, err error) {
+	repo.DB.Save(&user)
+	if user.ID <= 0 {
+		return domain.Users{}, errors.New("user is not found")
+	}
+	return user, nil
+}
+
 func (repo *UserRepository) Delete(id int) (user domain.Users, err error) {
 	user = domain.Users{}
 	repo.DB.First(&user, id)

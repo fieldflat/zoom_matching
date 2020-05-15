@@ -50,6 +50,19 @@ func (interactor *UserInteractor) CreateUser(argUser domain.Users) (user domain.
 	return createdUser, nil
 }
 
+// Update is a function
+// 全てのユーザーを取得する．
+func (interactor *UserInteractor) Update(argUser domain.Users) (user domain.Users, err error) {
+
+	updatedUser, err := interactor.User.Update(argUser)
+	if err != nil {
+		interactor.StatusCode = 404
+		return domain.Users{}, err
+	}
+	interactor.StatusCode = 200
+	return updatedUser, nil
+}
+
 // Delete is a function
 // idをキーとしてUserを1人取得する．
 func (interactor *UserInteractor) Delete(id int) (user domain.Users, err error) {
