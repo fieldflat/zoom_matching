@@ -10,4 +10,5 @@ type UserRepository interface {
 	FindByID(id int) (event domain.Users, err error)
 	FindAll() (event []domain.Users, err error)
 	Create(user domain.Users) (event domain.Users, err error)
+	Delete(id int) (event domain.Users, err error)
 }

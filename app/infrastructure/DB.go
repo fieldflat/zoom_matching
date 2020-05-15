@@ -5,6 +5,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
+// DB is a struct
 type DB struct {
 	Host     string
 	Username string
@@ -13,6 +14,7 @@ type DB struct {
 	Connect  *gorm.DB
 }
 
+// NewDB is a function
 func NewDB() *DB {
 	c := NewConfig()
 	return newDB(&DB{
@@ -23,6 +25,7 @@ func NewDB() *DB {
 	})
 }
 
+// NewTestDB is a function
 func NewTestDB() *DB {
 	c := NewConfig()
 	return newDB(&DB{
@@ -33,6 +36,7 @@ func NewTestDB() *DB {
 	})
 }
 
+// newDB is a function
 func newDB(d *DB) *DB {
 	// https://github.com/go-sql-driver/mysql#examples
 	db, err := gorm.Open("mysql", d.Username+":"+d.Password+"@tcp("+d.Host+")/"+d.DBName+"?charset=utf8&parseTime=True&loc=Local")
@@ -43,14 +47,27 @@ func newDB(d *DB) *DB {
 	return d
 }
 
+// First is a function
 func (db *DB) First(out interface{}, where ...interface{}) *gorm.DB {
 	return db.Connect.First(out, where...)
 }
 
+// Find is a function
 func (db *DB) Find(out interface{}, where ...interface{}) *gorm.DB {
 	return db.Connect.Find(out, where...)
 }
 
+// Create is a function
 func (db *DB) Create(out interface{}, where ...interface{}) *gorm.DB {
 	return db.Connect.Create(out)
+}
+
+// Save is a function
+func (db *DB) Save(out interface{}, where ...interface{}) *gorm.DB {
+	return db.Connect.Save(out)
+}
+
+// Delete is a function
+func (db *DB) Delete(out interface{}, where ...interface{}) *gorm.DB {
+	return db.Connect.Delete(out, where...)
 }

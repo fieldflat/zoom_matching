@@ -49,3 +49,17 @@ func (interactor *UserInteractor) CreateUser(argUser domain.Users) (user domain.
 	interactor.StatusCode = 200
 	return createdUser, nil
 }
+
+// Delete is a function
+// idをキーとしてUserを1人取得する．
+func (interactor *UserInteractor) Delete(id int) (user domain.Users, err error) {
+	// Users の取得
+	foundUser, err := interactor.User.Delete(id)
+	if err != nil {
+		interactor.StatusCode = 404
+		return domain.Users{}, err
+	}
+
+	interactor.StatusCode = 200
+	return foundUser, nil
+}

@@ -76,3 +76,17 @@ func (controller *UsersController) Create(c Context) {
 
 	c.JSON(controller.Interactor.StatusCode, NewH("success", returnUser))
 }
+
+// Delete is a function
+// idをキーとしてUserを1人取得する．
+func (controller *UsersController) Delete(c Context) {
+
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	user, err := controller.Interactor.Delete(id)
+	if err != nil {
+		c.JSON(controller.Interactor.StatusCode, NewH(err.Error(), nil))
+		return
+	}
+	c.JSON(controller.Interactor.StatusCode, NewH("success", user))
+}
