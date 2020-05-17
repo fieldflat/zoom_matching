@@ -36,7 +36,7 @@ func (repo *PostRepository) FindPostsByUID(uid string) (post []domain.Post, err 
 func (repo *PostRepository) Create(post domain.Post) (event domain.Post, err error) {
 	repo.DB.Create(&post)
 	if post.ID <= 0 {
-		return domain.Post{}, errors.New("creation is failed")
+		return domain.Post{}, errors.New("post creation is failed")
 	}
 	return post, nil
 }

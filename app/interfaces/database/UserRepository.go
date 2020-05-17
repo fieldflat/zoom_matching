@@ -29,6 +29,9 @@ func (repo *UserRepository) FindAll() (user []domain.Users, err error) {
 
 func (repo *UserRepository) Create(user domain.Users) (event domain.Users, err error) {
 	repo.DB.Create(&user)
+	if user.ID <= 0 {
+		return domain.Users{}, errors.New("user creation is failed")
+	}
 	return user, nil
 }
 

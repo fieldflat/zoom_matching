@@ -2,11 +2,6 @@ package domain
 
 import "time"
 
-// type NullTime struct {
-// 	Time  time.Time
-// 	Valid bool
-// }
-
 // Post is a struct
 type Post struct {
 	ID            int        `json:"ID"`
