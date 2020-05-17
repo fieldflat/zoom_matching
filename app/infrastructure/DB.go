@@ -71,3 +71,8 @@ func (db *DB) Save(out interface{}, where ...interface{}) *gorm.DB {
 func (db *DB) Delete(out interface{}, where ...interface{}) *gorm.DB {
 	return db.Connect.Delete(out, where...)
 }
+
+// Where is a function
+func (db *DB) Where(query interface{}, args ...interface{}) *gorm.DB {
+	return db.Connect.Where(query, args...)
+}

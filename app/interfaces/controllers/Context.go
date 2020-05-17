@@ -9,4 +9,5 @@ type Context interface {
 	PostFormMap(key string) map[string]string
 	BindJSON(obj interface{}) error
 	Bind(obj interface{}) error
+	Query(key string) string
 }

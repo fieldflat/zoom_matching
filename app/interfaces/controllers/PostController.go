@@ -51,6 +51,20 @@ func (controller *PostController) GetAll(c Context) {
 	c.JSON(controller.Interactor.StatusCode, NewH("success", posts))
 }
 
+// GetPostsByUID is a function
+// 全てのユーザーを取得する．
+func (controller *PostController) GetPostsByUID(c Context) {
+
+	uid := c.Query("uid")
+
+	posts, err := controller.Interactor.GetPostsByUID(uid)
+	if err != nil {
+		c.JSON(controller.Interactor.StatusCode, NewH(err.Error(), nil))
+		return
+	}
+	c.JSON(controller.Interactor.StatusCode, NewH("success", posts))
+}
+
 // Create is a function
 // 全てのユーザーを取得する．
 func (controller *PostController) Create(c Context) {

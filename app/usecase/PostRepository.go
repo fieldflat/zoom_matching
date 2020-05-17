@@ -12,4 +12,5 @@ type PostRepository interface {
 	Create(user domain.Post) (event domain.Post, err error)
 	Update(user domain.Post) (event domain.Post, err error)
 	Delete(id int) (event domain.Post, err error)
+	FindPostsByUID(uid string) (event []domain.Post, err error)
 }

@@ -27,6 +27,12 @@ func (repo *PostRepository) FindAll() (post []domain.Post, err error) {
 	return posts, nil
 }
 
+func (repo *PostRepository) FindPostsByUID(uid string) (post []domain.Post, err error) {
+	posts := []domain.Post{}
+	repo.DB.Where("user_id = ?", uid).Find(&posts)
+	return posts, nil
+}
+
 func (repo *PostRepository) Create(post domain.Post) (event domain.Post, err error) {
 	repo.DB.Create(&post)
 	return post, nil

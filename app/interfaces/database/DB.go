@@ -11,4 +11,5 @@ type DB interface {
 	Create(out interface{}, where ...interface{}) *gorm.DB
 	Save(out interface{}, where ...interface{}) *gorm.DB
 	Delete(out interface{}, where ...interface{}) *gorm.DB
+	Where(out interface{}, where ...interface{}) *gorm.DB
 }

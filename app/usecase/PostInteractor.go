@@ -37,6 +37,20 @@ func (interactor *PostInteractor) GetAll() (posts []domain.Post, err error) {
 	return foundPosts, nil
 }
 
+// GetPostsByUID is a function
+// 全てのユーザーを取得する．
+func (interactor *PostInteractor) GetPostsByUID(uid string) (posts []domain.Post, err error) {
+	// Posts の取得
+	foundPosts, err := interactor.Post.FindPostsByUID(uid)
+
+	if err != nil {
+		interactor.StatusCode = 404
+		return []domain.Post{}, err
+	}
+	interactor.StatusCode = 200
+	return foundPosts, nil
+}
+
 // Create is a function
 // 全てのユーザーを取得する．
 func (interactor *PostInteractor) Create(argUser domain.Post) (post domain.Post, err error) {

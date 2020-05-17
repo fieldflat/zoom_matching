@@ -31,6 +31,7 @@ func (r *Routing) setRouting() {
 	r.Gin.DELETE("/users/:id", func(c *gin.Context) { usersController.Delete(c) })
 
 	r.Gin.GET("/posts/:id", func(c *gin.Context) { postController.Get(c) })
+	r.Gin.GET("/posts_by_uid", func(c *gin.Context) { postController.GetPostsByUID(c) })
 	r.Gin.GET("/posts", func(c *gin.Context) { postController.GetAll(c) })
 	r.Gin.POST("/posts", func(c *gin.Context) { postController.Create(c) })
 	r.Gin.PUT("/posts/:id", func(c *gin.Context) { postController.Update(c) })
