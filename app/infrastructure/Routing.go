@@ -23,11 +23,18 @@ func NewRouting(db *DB) *Routing {
 // [1]. Routingの設定
 func (r *Routing) setRouting() {
 	usersController := controllers.NewUsersController(r.DB)
+	postController := controllers.NewPostController(r.DB)
 	r.Gin.GET("/users/:id", func(c *gin.Context) { usersController.Get(c) })
 	r.Gin.GET("/users", func(c *gin.Context) { usersController.GetAll(c) })
 	r.Gin.POST("/users", func(c *gin.Context) { usersController.Create(c) })
 	r.Gin.PUT("/users/:id", func(c *gin.Context) { usersController.Update(c) })
 	r.Gin.DELETE("/users/:id", func(c *gin.Context) { usersController.Delete(c) })
+
+	r.Gin.GET("/posts/:id", func(c *gin.Context) { postController.Get(c) })
+	r.Gin.GET("/posts", func(c *gin.Context) { postController.GetAll(c) })
+	r.Gin.POST("/posts", func(c *gin.Context) { postController.Create(c) })
+	r.Gin.PUT("/posts/:id", func(c *gin.Context) { postController.Update(c) })
+	r.Gin.DELETE("/posts/:id", func(c *gin.Context) { postController.Delete(c) })
 }
 
 func (r *Routing) Run(port string) {
