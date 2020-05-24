@@ -1,8 +1,8 @@
 package controllers
 
 import (
+	"log"
 	"strconv"
-	"time"
 
 	"../../domain"
 	"../../usecase"
@@ -51,6 +51,25 @@ func (controller *UsersController) GetAll(c Context) {
 	c.JSON(controller.Interactor.StatusCode, NewH("success", users))
 }
 
+// GetByUserID is a function
+// idをキーとしてUserを1人取得する．
+func (controller *UsersController) GetByUserID(c Context) {
+
+	uid := c.PostForm("uid")
+
+	user, err := controller.Interactor.GetByUserID(uid)
+	log.Print(user.Password)
+	log.Print(c.PostForm("password"))
+	if err != nil {
+		c.JSON(controller.Interactor.StatusCode, NewH(err.Error(), nil))
+		return
+	} else if user.Password != c.PostForm("password") {
+		c.JSON(404, NewH("password incorrect", nil))
+		return
+	}
+	c.JSON(controller.Interactor.StatusCode, NewH("success", user))
+}
+
 // Create is a function
 // 全てのユーザーを取得する．
 func (controller *UsersController) Create(c Context) {
@@ -62,7 +81,7 @@ func (controller *UsersController) Create(c Context) {
 	user.LastName = c.PostForm("last_name")
 	user.DisplayName = c.PostForm("display_name")
 	user.Email = c.PostForm("email")
-	user.CreatedAt = time.Now()
+	user.Password = c.PostForm("password")
 
 	// JSONデータを用いて構築する場合
 	// c.Bind(&user)
@@ -89,7 +108,7 @@ func (controller *UsersController) Update(c Context) {
 	user.LastName = c.PostForm("last_name")
 	user.DisplayName = c.PostForm("display_name")
 	user.Email = c.PostForm("email")
-	user.CreatedAt = time.Now()
+	user.Password = c.PostForm("password")
 
 	// JSONデータを用いて構築する場合
 	// c.Bind(&user)

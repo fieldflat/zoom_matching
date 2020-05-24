@@ -16,7 +16,7 @@ func (repo *UserRepository) FindByID(id int) (user domain.Users, err error) {
 	user = domain.Users{}
 	repo.DB.First(&user, id)
 	if user.ID <= 0 {
-		return domain.Users{}, errors.New("user is not found")
+		return domain.Users{}, errors.New("user is not found (FindByID)")
 	}
 	return user, nil
 }
@@ -25,6 +25,15 @@ func (repo *UserRepository) FindAll() (user []domain.Users, err error) {
 	users := []domain.Users{}
 	repo.DB.Find(&users)
 	return users, nil
+}
+
+func (repo *UserRepository) FindByUserID(uid string) (user domain.Users, err error) {
+	user = domain.Users{}
+	repo.DB.Where("user_id = ?", uid).First(&user)
+	if user.ID <= 0 {
+		return domain.Users{}, errors.New("user is not found (FindByUserID)")
+	}
+	return user, nil
 }
 
 func (repo *UserRepository) Create(user domain.Users) (event domain.Users, err error) {

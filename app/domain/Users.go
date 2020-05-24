@@ -10,6 +10,7 @@ type Users struct {
 	LastName    string     `json:"last_name"`
 	DisplayName string     `json:"display_name"`
 	Email       string     `json:"email"`
+	Password    string     `json:"password"`
 	CreatedAt   time.Time  `json:"created_at"`
 	UpdatedAt   time.Time  `json:"updated_at"`
 	DeletedAt   *time.Time `json:"deleted_at"`
@@ -22,6 +23,7 @@ type UsersForGet struct {
 	FirstName string `json:"first_name"`
 	LastName  string `json:"last_name"`
 	Email     string `json:"email"`
+	Password  string `json:"password"`
 }
 
 // BuildForGet is a function
