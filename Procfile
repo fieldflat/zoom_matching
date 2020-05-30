@@ -1,1 +1,1 @@
-web: bin/go-api-server-nult
+web: go-api-server-nult
