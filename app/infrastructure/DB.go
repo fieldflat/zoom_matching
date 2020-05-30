@@ -39,7 +39,8 @@ func NewTestDB() *DB {
 // newDB is a function
 func newDB(d *DB) *DB {
 	// https://github.com/go-sql-driver/mysql#examples
-	db, err := gorm.Open("mysql", d.Username+":"+d.Password+"@tcp("+d.Host+")/"+d.DBName+"?charset=utf8&parseTime=True&loc=Local")
+	// db, err := gorm.Open("mysql", d.Username+":"+d.Password+"@tcp("+d.Host+")/"+d.DBName+"?charset=utf8&parseTime=True&loc=Local")
+	db, err := gorm.Open("mysql", d.Username+":"+d.Password+"@tcp("+d.Host+":3306)/"+d.DBName+"?charset=utf8&parseTime=True")
 	if err != nil {
 		panic(err.Error())
 	}
