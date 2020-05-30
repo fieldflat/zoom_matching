@@ -3,9 +3,9 @@ package controllers
 import (
 	"strconv"
 
-	"../../domain"
-	"../../usecase"
-	"../database"
+	"github.com/fieldflat/zoom_matching/app/domain"
+	"github.com/fieldflat/zoom_matching/app/interfaces/database"
+	"github.com/fieldflat/zoom_matching/app/usecase"
 )
 
 // ParticipantController is a type

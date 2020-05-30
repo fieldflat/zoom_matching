@@ -1,7 +1,7 @@
 package main
 
 import (
-	"./app/infrastructure"
+	"github.com/fieldflat/zoom_matching/app/infrastructure"
 )
 
 func main() {

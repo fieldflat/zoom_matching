@@ -4,9 +4,9 @@ import (
 	"strconv"
 	"time"
 
-	"../../domain"
-	"../../usecase"
-	"../database"
+	"github.com/fieldflat/zoom_matching/app/domain"
+	"github.com/fieldflat/zoom_matching/app/interfaces/database"
+	"github.com/fieldflat/zoom_matching/app/usecase"
 )
 
 // PostController is a type

@@ -1,7 +1,7 @@
 package usecase
 
 import (
-	"../domain"
+	"github.com/fieldflat/zoom_matching/app/domain"
 )
 
 // ParticipantInteractor is a type

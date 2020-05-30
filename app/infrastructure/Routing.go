@@ -5,7 +5,7 @@ import (
 	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
 
-	"../interfaces/controllers"
+	"github.com/fieldflat/zoom_matching/app/interfaces/controllers"
 )
 
 type Routing struct {

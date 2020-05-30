@@ -3,7 +3,7 @@ package database
 import (
 	"errors"
 
-	"../../domain"
+	"github.com/fieldflat/zoom_matching/app/domain"
 )
 
 type PostRepository struct {
