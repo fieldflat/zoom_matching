@@ -28,7 +28,7 @@ func NewParticipantController(db database.DB) *ParticipantController {
 // 全てのユーザーを取得する．
 func (controller *ParticipantController) GetParticipantsByUID(c Context) {
 
-	uid := c.PostForm("uid")
+	uid := c.Query("uid")
 
 	participants, err := controller.Interactor.GetParticipantsByUID(uid)
 	if err != nil {

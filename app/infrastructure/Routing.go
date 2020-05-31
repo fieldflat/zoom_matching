@@ -30,38 +30,83 @@ func (r *Routing) setRouting() {
 	usersController := controllers.NewUsersController(r.DB)
 	postController := controllers.NewPostController(r.DB)
 	participantController := controllers.NewParticipantController(r.DB)
-	r.Gin.GET("/users/:id", func(c *gin.Context) { usersController.Get(c) })
+
+	r.Gin.GET("/users/:id", func(c *gin.Context) {
+		c.Header("Content-Type", "application/json")
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Headers", "Content-Type")
+		usersController.Get(c)
+	})
+
 	r.Gin.GET("/users", func(c *gin.Context) {
 		c.Header("Content-Type", "application/json")
 		c.Header("Access-Control-Allow-Origin", "*")
 		c.Header("Access-Control-Allow-Headers", "Content-Type")
 		usersController.GetAll(c)
 	})
+
 	r.Gin.POST("/users", func(c *gin.Context) {
 		c.Header("Content-Type", "application/json")
 		c.Header("Access-Control-Allow-Origin", "*")
 		c.Header("Access-Control-Allow-Headers", "Content-Type")
 		usersController.Create(c)
 	})
-	r.Gin.PUT("/users/:id", func(c *gin.Context) { usersController.Update(c) })
-	r.Gin.DELETE("/users/:id", func(c *gin.Context) { usersController.Delete(c) })
 
-	r.Gin.GET("/posts/:id", func(c *gin.Context) { postController.Get(c) })
-	r.Gin.GET("/posts_by_uid", func(c *gin.Context) { postController.GetPostsByUID(c) }) // query parameter
+	r.Gin.PUT("/users/:id", func(c *gin.Context) {
+		c.Header("Content-Type", "application/json")
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Headers", "Content-Type")
+		usersController.Update(c)
+	})
+
+	r.Gin.DELETE("/users/:id", func(c *gin.Context) {
+		c.Header("Content-Type", "application/json")
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Headers", "Content-Type")
+		usersController.Delete(c)
+	})
+
+	r.Gin.GET("/posts/:id", func(c *gin.Context) {
+		c.Header("Content-Type", "application/json")
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Headers", "Content-Type")
+		postController.Get(c)
+	})
+
+	r.Gin.GET("/posts_by_uid", func(c *gin.Context) {
+		c.Header("Content-Type", "application/json")
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Headers", "Content-Type")
+		postController.GetPostsByUID(c)
+	}) // query parameter
+
 	r.Gin.GET("/posts", func(c *gin.Context) {
 		c.Header("Content-Type", "application/json")
 		c.Header("Access-Control-Allow-Origin", "*")
 		c.Header("Access-Control-Allow-Headers", "Content-Type")
 		postController.GetAll(c)
 	})
+
 	r.Gin.POST("/posts", func(c *gin.Context) {
 		c.Header("Content-Type", "application/json")
 		c.Header("Access-Control-Allow-Origin", "*")
 		c.Header("Access-Control-Allow-Headers", "Content-Type")
 		postController.Create(c)
 	})
-	r.Gin.PUT("/posts/:id", func(c *gin.Context) { postController.Update(c) })
-	r.Gin.DELETE("/posts/:id", func(c *gin.Context) { postController.Delete(c) })
+
+	r.Gin.PUT("/posts/:id", func(c *gin.Context) {
+		c.Header("Content-Type", "application/json")
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Headers", "Content-Type")
+		postController.Update(c)
+	})
+
+	r.Gin.DELETE("/posts/:id", func(c *gin.Context) {
+		c.Header("Content-Type", "application/json")
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Headers", "Content-Type")
+		postController.Delete(c)
+	})
 
 	r.Gin.POST("/participants", func(c *gin.Context) {
 		c.Header("Content-Type", "application/json")
@@ -69,14 +114,27 @@ func (r *Routing) setRouting() {
 		c.Header("Access-Control-Allow-Headers", "Content-Type")
 		participantController.Create(c)
 	})
+
 	r.Gin.GET("/participants_by_uid", func(c *gin.Context) {
 		c.Header("Content-Type", "application/json")
 		c.Header("Access-Control-Allow-Origin", "*")
 		c.Header("Access-Control-Allow-Headers", "Content-Type")
 		participantController.GetParticipantsByUID(c)
 	}) // query parameter
-	r.Gin.GET("/participants_by_post_id", func(c *gin.Context) { participantController.GetParticipantsByPostID(c) }) // query parameter
-	r.Gin.DELETE("/participants/:participant_id", func(c *gin.Context) { participantController.Delete(c) })
+
+	r.Gin.GET("/participants_by_post_id", func(c *gin.Context) {
+		c.Header("Content-Type", "application/json")
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Headers", "Content-Type")
+		participantController.GetParticipantsByPostID(c)
+	}) // query parameter
+
+	r.Gin.DELETE("/participants/:participant_id", func(c *gin.Context) {
+		c.Header("Content-Type", "application/json")
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Headers", "Content-Type")
+		participantController.Delete(c)
+	})
 
 	r.Gin.POST("/login", func(c *gin.Context) {
 		c.Header("Content-Type", "application/json")
