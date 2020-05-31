@@ -63,8 +63,18 @@ func (r *Routing) setRouting() {
 	r.Gin.PUT("/posts/:id", func(c *gin.Context) { postController.Update(c) })
 	r.Gin.DELETE("/posts/:id", func(c *gin.Context) { postController.Delete(c) })
 
-	r.Gin.POST("/participants", func(c *gin.Context) { participantController.Create(c) })
-	r.Gin.GET("/participants_by_uid", func(c *gin.Context) { participantController.GetParticipantsByUID(c) })        // query parameter
+	r.Gin.POST("/participants", func(c *gin.Context) {
+		c.Header("Content-Type", "application/json")
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Headers", "Content-Type")
+		participantController.Create(c)
+	})
+	r.Gin.GET("/participants_by_uid", func(c *gin.Context) {
+		c.Header("Content-Type", "application/json")
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Headers", "Content-Type")
+		participantController.GetParticipantsByUID(c)
+	}) // query parameter
 	r.Gin.GET("/participants_by_post_id", func(c *gin.Context) { participantController.GetParticipantsByPostID(c) }) // query parameter
 	r.Gin.DELETE("/participants/:participant_id", func(c *gin.Context) { participantController.Delete(c) })
 
